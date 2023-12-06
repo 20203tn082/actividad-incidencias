@@ -67,8 +67,8 @@ self.addEventListener('install', e=>{
     .then(cache =>{
         cache.addAll(APP_SHELL_INMUTABLE);
     })
-    e.waitUntil(Promise.all([staticCache, inmutableCache]))
     e.skipWaiting();
+    e.waitUntil(Promise.all([staticCache, inmutableCache]));
 })
 self.addEventListener('activate', e=>{
     const clearCache = caches.keys().then((keys) =>{

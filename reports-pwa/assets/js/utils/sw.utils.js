@@ -1,5 +1,5 @@
 const updateDynamicCache = (dynamicCache, req, res) =>{
-    if(res.status === 200){
+    if(res.ok){
         return caches.open(dynamicCache).then((cache)=>{
             cache.put(req, res);
             return res;
@@ -36,7 +36,7 @@ const apiSaveIncidence = (cacheName, req) =>{
         return axiosClient.get(req.url);
     }else{
         return axiosClient.get(req.url).then((response) =>{
-            if(response.status === 200){
+            if(response.ok){
                 updateDynamicCache(cacheName, req, response)
             }else{
                 return caches.match(req);

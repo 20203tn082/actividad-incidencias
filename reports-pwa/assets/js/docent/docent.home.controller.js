@@ -10,7 +10,7 @@
   let payload = {
     title: '',
     type: '',
-    userId: '',
+    userId: 0,
     description: '',
     incidenceDate: '',
     status: {id: 4},
@@ -83,7 +83,7 @@
       payload.description =  document.getElementById('description').value;     
       const date = document.getElementById('incidenceDate').value.split('T');
       payload.incidenceDate =  `${date[0]} ${date[1]}`; 
-      payload.userId = parseJWT().areas[0].id
+      payload.userId = parseJWT().areas[0].id;
 
       try{
         const response = await axiosClient.post('/incidences/save',payload);
